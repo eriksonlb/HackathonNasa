@@ -53,7 +53,7 @@ class Sensor:
             while 1:
                 tempBruto = ser.readline() # read one byte
                 tempTratada = tempBruto.decode("utf-8")[:-2]
-                return (True if tempTratada > 50 else False) #verificação do limite da temperatura de incendio
+                return ("OK" if tempTratada == "OK" else "Fire!") #verificação do limite da temperatura de incendio
 
 
     def randomTemperatura(self): #gerador pra quando não tiver sensor plugado
