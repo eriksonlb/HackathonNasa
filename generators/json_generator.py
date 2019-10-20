@@ -1,6 +1,7 @@
 import json
 from app_generator import gerar_usuario, gerar_sensor
 import requests
+from time import sleep
 
 
 def gerar_json(dicionario):
@@ -15,23 +16,28 @@ def json_sender(dicionario):
     #time.sleep(1)
 
 #Vai tentar gerar uma lista válida para um JSON, gerado na memória
-try:
-    print('Gerando sensor...\n')
-    sensor_01 = gerar_sensor()
-    print('Sensor gerado!\n')
-except Exception as err: #se falhar, vai mostrar o erro +-
-    print('Não foi possível gerar um sensor!', err)
+
+def app():
+    try:
+        print('Gerando sensor...\n')
+        sensor_01 = gerar_sensor()
+        print('Sensor gerado!\n')
+    except Exception as err: #se falhar, vai mostrar o erro +-
+        print('Não foi possível gerar um sensor!', err)
 
 
-#Vai tentar pegar os dados da lista, gerar um JSON e enviar para a tabela no link
-try:
-    print('\nEnviando o arquivo JSON...\n')
-    json_sender(sensor_01)
-    print(f'Arquivo JSON gerado:  \n{sensor_01}\n*Fim de arquivo*\n')
-    print('JSON Enviado com sucesso!')
-except Exception as err:
-    print('Não foi possível enviar o JSON:', err)
+    #Vai tentar pegar os dados da lista, gerar um JSON e enviar para a tabela no link
+    try:
+        print('\nEnviando o arquivo JSON...\n')
+        json_sender(sensor_01)
+        print(f'Arquivo JSON gerado:  \n{sensor_01}\n*Fim de arquivo*\n')
+        print('JSON Enviado com sucesso!')
+    except Exception as err:
+        print('Não foi possível enviar o JSON:', err)
 
+for x in range(50):
+    app()
+    sleep(2)
 
 
 #Comentei aqui para não ficar salvando o arquivo na pasta    
